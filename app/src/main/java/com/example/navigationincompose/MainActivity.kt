@@ -1,25 +1,25 @@
 package com.example.navigationincompose
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.navigationincompose.nav_graph.SetUpNavGraph
-import com.example.navigationincompose.ui.theme.NavigationInComposeTheme
+import android.os.*
+import androidx.activity.*
+import androidx.activity.compose.*
+import androidx.navigation.*
+import androidx.navigation.compose.*
+import com.example.navigationincompose.nav_graph.*
+import com.example.navigationincompose.ui.theme.*
 
 class MainActivity : ComponentActivity() {
-
-    private lateinit var navController: NavHostController
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            NavigationInComposeTheme {
-                // A surface container using the 'background' color from the theme
-                navController = rememberNavController()
-                SetUpNavGraph(navController = navController)
-            }
-        }
-    }
+	
+	private lateinit var navController: NavHostController
+	
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContent {
+			NavigationInComposeTheme {
+				// A surface container using the 'background' color from the theme
+				navController = rememberNavController()
+				SetUpNavGraph(navController = navController)
+			}
+		}
+	}
 }

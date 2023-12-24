@@ -1,10 +1,10 @@
 package com.example.navigationincompose
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import android.os.*
+import kotlinx.parcelize.*
 
 @Parcelize
 data class Person(
-    val firstName : String,
-    val secondName : String
-): Parcelable
+		val firstName: String,
+		val secondName: String
+                 ) : Parcelable
