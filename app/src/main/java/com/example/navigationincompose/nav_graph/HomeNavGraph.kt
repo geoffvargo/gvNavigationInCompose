@@ -1,11 +1,13 @@
 package com.example.navigationincompose.nav_graph
 
 import android.util.*
+import androidx.compose.material3.*
 import androidx.navigation.*
 import androidx.navigation.compose.*
 import com.example.navigationincompose.*
 import com.example.navigationincompose.screen.*
 
+@ExperimentalMaterial3Api
 fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
 	navigation(startDestination = Screen.Home.route,
 	           route = HOME_ROUTE) {
