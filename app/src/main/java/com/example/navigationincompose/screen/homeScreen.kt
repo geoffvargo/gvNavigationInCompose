@@ -1,6 +1,5 @@
 package com.example.navigationincompose.screen
 
-import android.annotation.*
 import android.app.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -10,7 +9,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
 import androidx.compose.ui.platform.*
@@ -23,7 +21,6 @@ import com.example.navigationincompose.*
 import com.example.navigationincompose.Person
 
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
@@ -42,28 +39,32 @@ fun HomeScreen(navHostController: NavHostController) {
 				                            contentDescription = "Settings")
 			                       }
 		                       },
-		                       scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState()))}) {
-			Text(modifier = Modifier.clickable {
-				val person = Person(firstName = "Hi!!!", secondName = "From other side")
-				//navHostController.navigate(route = Screen.Detail.passId(5)) to call for single value
-				navHostController.currentBackStackEntry?.savedStateHandle?.set(key = "person", value = person)
-				navHostController.navigate(route = Screen.Detail.passNameAndId(10, "IamStupid"))
-			},
-			     text = "Home",
+		                       scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState()))
+	}) {
+		Text(modifier = Modifier.clickable(onClick = {
+			val person = Person(firstName = "Hi!!!",
+			                    secondName = "From other side")
+			//navHostController.navigate(route = Screen.Detail.passId(5)) to call for single value
+			navHostController.currentBackStackEntry?.savedStateHandle?.set(key = "person",
+			                                                               value = person)
+			navHostController.navigate(route = Screen.Detail.passNameAndId(id = 10,
+			                                                               name = "IamStupid"))
+		}),
+		     text = "Home",
 //			     color = MaterialTheme().colors.primary,
 //			     fontSize = MaterialTheme().typography.h3.fontSize,
-			     fontWeight = FontWeight.Bold)
-			Text(modifier = Modifier
-					.padding(top = 150.dp)
-					.clickable {
-						//Navigate to other NavGraph
-						navHostController.navigate(AUTHENTICATION_ROUTE)
-					},
-			     text = "Login/SignUp",
+             fontWeight = FontWeight.Bold)
+		Text(modifier = Modifier
+				.padding(top = 150.dp)
+				.clickable {
+					//Navigate to other NavGraph
+					navHostController.navigate(AUTHENTICATION_ROUTE)
+				}, text = "Login/SignUp",
 //			     fontSize = MaterialTheme.typography.h5.fontSize,
-			     fontWeight = FontWeight.Black)
-		}
+             fontWeight = FontWeight.Black)
+		Modifier.padding(it)
 	}
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
