@@ -8,8 +8,8 @@ const val ROOT_ROUTE = "root"
 const val HOME_ROUTE = "home"
 
 sealed class Screen(val route: String) {
-	object Home : Screen(route = "home_screen")
-	object Detail : Screen(route = "detail_screen/{$DETAIL_ARGUMENT_KEY}/{$DETAIL_ARGUMENT_KEY2}") {
+	data object Home : Screen(route = "home_screen")
+	data object Detail : Screen(route = "detail_screen/{$DETAIL_ARGUMENT_KEY}/{$DETAIL_ARGUMENT_KEY2}") {
 		//        fun passId(id : Int): String{
 		//            //to pass a single value
 		//            Log.d("Args","just a log ${this.route}")
@@ -20,6 +20,6 @@ sealed class Screen(val route: String) {
 		}
 	}
 	
-	object Login : Screen(route = "login_screen")
-	object SignUp : Screen(route = "signUp_Screen")
+	data object Login : Screen(route = "login_screen")
+	data object SignUp : Screen(route = "signUp_Screen")
 }

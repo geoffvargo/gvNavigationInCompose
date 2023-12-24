@@ -1,6 +1,7 @@
 package com.example.navigationincompose.screen
 
 import android.annotation.*
+import android.app.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -12,31 +13,31 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import androidx.navigation.*
 import androidx.navigation.compose.*
 import com.example.navigationincompose.*
+import com.example.navigationincompose.Person
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
-//	Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-	val navController = rememberNavController()
-//	val activity =
+	val activity = LocalContext.current as? Activity
 	Scaffold(topBar = {
 		CenterAlignedTopAppBar(title = { Text("My App") },
 		                       navigationIcon = {
-			                       IconButton(onClick = { /* activity?.finish() */ }) {
+			                       IconButton(onClick = { activity?.finish() }) {
 				                       Icon(imageVector = Icons.Filled.ArrowBack,
 				                            contentDescription = "Back")
 			                       }
 		                       },
 		                       actions = {
-			                       IconButton(onClick = { /* navController.navigate(NavigationItem.Options.route) */ }) {
+			                       IconButton(onClick = { navHostController.navigate(AUTHENTICATION_ROUTE) }) {
 				                       Icon(imageVector = Icons.Filled.Menu,
 				                            contentDescription = "Settings")
 			                       }
@@ -64,8 +65,9 @@ fun HomeScreen(navHostController: NavHostController) {
 		}
 	}
 
-//@Composable
-//@Preview(showBackground = true)
-//fun HomeScreenPreview() {
-//	HomeScreen(navHostController = rememberNavController())
-//}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+@Preview(showBackground = true)
+fun HomeScreenPreview() {
+	HomeScreen(navHostController = rememberNavController())
+}
